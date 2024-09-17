@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+
+# Multer temporary files
+uploads/
+
+# Specific to PostgreSQL
+*.sql
+*.pgsql
