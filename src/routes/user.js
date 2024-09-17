@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const userController = require("../controllers/user"); // Adjust the path if necessary
-const authenticate = require("../middlewares/authmiddleware")
+const authenticate = require("../middlewares/authmiddleware");
+const authorize = require("../middlewares/authorize");
 
 const router = Router();
 
@@ -11,7 +12,7 @@ router.post("/", userController.createUser);
 router.get("/", userController.getAllUsers);
 
 // Get a single user by ID
-router.get("/:id",authenticate, userController.getUserById);
+router.get("/:id",authenticate,authorize(['admin','editor']), userController.getUserById);
 
 // Update a user by ID
 router.put("/:id", userController.updateUser);

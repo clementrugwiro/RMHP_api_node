@@ -10,6 +10,8 @@ const team = require('./src/routes/teammates')
 const contentRoutes = require("./src/routes/content");
 const reviews =require('./src/routes/reviews')
 const projects = require('./src/routes/projects')
+const contact = require('./src/routes/contact')
+const contactus = require('./src/routes/contactus')
 
 const port = 3001
 
@@ -27,6 +29,8 @@ app.use("/api/team", team)
 app.use("/api/content", contentRoutes);
 app.use('/api/reviews',reviews)
 app.use('/api/projects',projects)
+app.use('/api/contact', contact)
+app.use("/api",contactus)
 
 app.get ('/', (req,res)=>{  
     res.send("The app is running correctly.")
