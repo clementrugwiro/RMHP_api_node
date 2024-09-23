@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const reviews = require("../controllers/reviews");
+const authenticate = require("../middlewares/authmiddleware");
+const authorize = require("../middlewares/authorize");
+
 
 // Create a new review
 router.post("/", reviews.createReview);
@@ -12,9 +15,19 @@ router.get("/", reviews.getAllReviews);
 router.get("/:id", reviews.getReviewById);
 
 // Update a review
-router.put("/:id", reviews.updateReview);
+router.put(
+  "/:id",
+  authenticate,
+  authorize(["admin", "editor"]),
+  reviews.updateReview
+);
 
 // Delete a review
-router.delete("/:id", reviews.deleteReview);
+router.delete(
+  "/:id",
+  authenticate,
+  authorize(["admin", "editor"]),
+  reviews.deleteReview
+);
 
 module.exports = router;
