@@ -19,7 +19,7 @@ const contact = require('./src/routes/contact')
 const contactus = require('./src/routes/contactus')
 const jobs = require('./src/routes/jobs')
 
-const port = 3001
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -47,6 +47,6 @@ app.use("/api/jobs",jobs)
 app.get ('/', (req,res)=>{  
     res.send("The app is running correctly.")
 })
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
